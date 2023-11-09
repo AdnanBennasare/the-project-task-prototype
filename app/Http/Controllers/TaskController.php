@@ -80,10 +80,12 @@ class TaskController extends Controller
         if ($request->ajax()) {
             return view('tasks.taskTablePartial', compact('tasks'));
         } else {
-            return view('tasks.index', compact('tasks'));
+            $projects = Project::all(); // Fetch all projects
+            return view('tasks.index', compact('tasks', 'projects'));       
         }
     }
     
+
 
 
     public function create(Request $request)

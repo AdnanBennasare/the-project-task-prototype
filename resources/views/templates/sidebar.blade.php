@@ -33,6 +33,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('tasks.index')}}" class="nav-link">
+              <i class="fa-solid fa-list-check pl-1 pr-2"></i>
+              <p>
+                members
+              </p>
+            </a>
+          </li>
         
 
           </li>

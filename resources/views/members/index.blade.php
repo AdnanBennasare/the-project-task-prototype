@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Projects</h1>
+                    <h1 class="m-0">Les Mambres</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -34,7 +34,7 @@
                     <div class="col-sm-12 d-flex justify-content-between p-0">
                       {{-- Add new project button  --}}
                         <div class="">
-                            <a href="{{route('projects.create')}}" class="btn btn-primary"><i
+                            <a href="" class="btn btn-primary"><i
                                     class="fa-solid fa-plus"></i></a>
                         </div>
                       {{-- search input  --}}
@@ -51,7 +51,7 @@
                 </div>
                 <div id="resulthtml">
 
-                    @include('projects.projectTablePartial')
+                    @include('members.membersTable')
                 </div>
 
 

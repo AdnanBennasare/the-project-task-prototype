@@ -35,6 +35,8 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{-- <script src={{asset("dist/js/pages/dashboard.js")}}></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<!-- Select2 -->
+<script src={{asset("plugins/select2/js/select2.full.min.js")}}></script>
   </body>
 <script>
     $.ajaxSetup({
