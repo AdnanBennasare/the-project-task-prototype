@@ -95,10 +95,5 @@ abstract class BaseRepository
         return $query;
     }
 
-//     public function all(array $search = [], int $skip = null, int $limit = null, array $columns = ['*']): Collection
-//     {
-//         $query = $this->allQuery($search, $skip, $limit);
 
-//         return $query->get($columns);
-//     }
 }

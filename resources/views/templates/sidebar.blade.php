@@ -33,14 +33,16 @@
               </p>
             </a>
           </li>
+          @if (Auth::user()->role == "project_leader")
           <li class="nav-item">
-            <a href="{{route('tasks.index')}}" class="nav-link">
-              <i class="fa-solid fa-list-check pl-1 pr-2"></i>
+            <a href="{{route('members.index')}}" class="nav-link">
+              <i class="fa-solid fa-users pl-1 pr-1"></i>
               <p>
                 members
               </p>
             </a>
           </li>
+          @endif
         
 
           </li>

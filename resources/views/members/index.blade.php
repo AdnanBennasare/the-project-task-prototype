@@ -34,7 +34,7 @@
                     <div class="col-sm-12 d-flex justify-content-between p-0">
                       {{-- Add new project button  --}}
                         <div class="">
-                            <a href="" class="btn btn-primary"><i
+                            <a href="{{route('members.create')}}" class="btn btn-primary"><i
                                     class="fa-solid fa-plus"></i></a>
                         </div>
                       {{-- search input  --}}
@@ -51,7 +51,7 @@
                 </div>
                 <div id="resulthtml">
 
-                    @include('members.membersTable')
+                    @include('members.membersTablePartial')
                 </div>
 
 
@@ -73,18 +73,18 @@
 
 
 $(document).ready(function() {
-    $(document).on('click', '.delete-project', function () {
-        var projectId = $(this).data('project-id');
-        var projectName = $(this).data('project-name'); // Retrieve project name
-        console.log(projectId);
-        console.log(projectName); // Log the project name to verify
+    $(document).on('click', '.delete-member', function () {
+        var membreId = $(this).data('member-id');
+        var membreName = $(this).data('member-name'); // Retrieve membre name
+        console.log(membreId);
+        console.log(membreName); // Log the membre name to verify
 
-        var deleteUrl = "{{ route('projects.destroy', ':id') }}";
-        deleteUrl = deleteUrl.replace(':id', projectId);
+        var deleteUrl = "{{ route('members.destroy', ':id') }}";
+        deleteUrl = deleteUrl.replace(':id', membreId);
         console.log(deleteUrl);
 
-        // Update modal content with the project name
-        $('#exampleModal .modal-body').html('<div>Si vous êtes sûr de vouloir supprimer ce projet <strong>"' + projectName + '"</strong> cliquez sur Supprimer pour continuer</div>');          
+        // Update modal content with the membre name
+        $('#exampleModal .modal-body').html('<div>Si vous êtes sûr de vouloir supprimer ce membre <strong>"' + membreName + '"</strong> cliquez sur Supprimer pour continuer</div>');          
         // Update form action URL
         $('#deleteForm').attr('action', deleteUrl);
     });
@@ -94,7 +94,7 @@ $(document).ready(function() {
     // const tableContainer = $('#table-container');
     var searchQuery = '';
     const search = (query = '', page = 1) => {
-        $.ajax('{{ route('projects.index') }}', {
+        $.ajax('{{ route('members.index') }}', {
             data: {
                 query: query,
                 page: page
