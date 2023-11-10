@@ -13,15 +13,15 @@
 
 
      <!-- Alert for success message -->
-     @if(session('success'))
+     @if(session('success-login'))
+
      <div class="content-wrapper">
      
         <div class="alert alert-success mx-1 my-2">
-            {{ session('success') }}
+            {{ session('success-login') }}
         </div>
 
 </div>
-
     @endif
  
 

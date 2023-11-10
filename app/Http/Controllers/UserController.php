@@ -43,7 +43,7 @@ class UserController extends Controller
         ]);
     
         // Return a redirect response with a success message and the name of the user added
-        return redirect()->route('members.index')->with('success', 'User <strong>' . htmlspecialchars($user->name, ENT_QUOTES, 'UTF-8') . '</strong> added successfully');
+        return redirect()->route('members.index')->with('success', 'User added successfully');
     } else {
         // User is not authorized, handle the unauthorized access
          abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");

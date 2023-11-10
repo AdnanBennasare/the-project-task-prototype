@@ -23,10 +23,11 @@
         <div class="container-fluid">
 
         @if(session('success'))
-         <div class="alert alert-success">
-        {!! session('success') !!}
-         </div>
-           @endif  
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+        @endif
+
 
             <!-- Small boxes (Stat box) -->
             <div class="card">
