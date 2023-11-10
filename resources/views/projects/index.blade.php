@@ -31,23 +31,24 @@
             <!-- Small boxes (Stat box) -->
             <div class="card">
                 <div class="card-header">
-                    <div class="col-sm-12 d-flex justify-content-between p-0">
+                  
                       {{-- Add new project button  --}}
-                        <div class="">
+                      @if (Auth::user()->role == "project_leader")
+                        <div class="float-left">
                             <a href="{{route('projects.create')}}" class="btn btn-primary"><i
                                     class="fa-solid fa-plus"></i></a>
                         </div>
+                        @endif
                       {{-- search input  --}}
                       
-                        <div class="">                           
-                            <div class="input-group input-group-sm" style="width: 150px;">
+                        <div class="float-right">                           
+                            <div class="input-group input-group-sm">
                                 <!-- SEARCH input -->
-                                    <input type="text" name="search" id="searchInput" class="form-control float-right" placeholder="Search">                             
-                            </div>
-                     
+                                <input type="text" name="search" id="searchInput" class="form-control" placeholder="Search">
+                             
+                            </div>                 
                           </div>  
-                          
-                    </div>
+              
                 </div>
                 <div id="resulthtml">
 

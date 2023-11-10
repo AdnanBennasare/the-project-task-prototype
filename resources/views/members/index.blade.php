@@ -24,7 +24,7 @@
 
         @if(session('success'))
          <div class="alert alert-success">
-        {{ session('success') }}
+        {!! session('success') !!}
          </div>
            @endif  
 
@@ -50,12 +50,11 @@
                     </div>
                 </div>
                 <div id="resulthtml">
-
                     @include('members.membersTablePartial')
                 </div>
 
-
               </div>
+         
             </div>
         
               

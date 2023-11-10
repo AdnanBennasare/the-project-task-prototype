@@ -28,6 +28,8 @@
         <a class="btn btn-primary btn-sm" href="{{route('tasks.show', $task->id)}}">
             <i class="fas fa-folder"></i>
         </a>
+        @if (Auth::user()->role == "project_leader")
+
         {{-- edit --}}
         <a class="btn btn-info btn-sm" href="{{route('tasks.edit', $task->id)}}">
             <i class="fas fa-pencil-alt"></i>    
@@ -36,6 +38,7 @@
         <button type="button" class="btn btn-danger delete-task" style="font-size: 11px;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-task-id="{{ $task->id }}" data-task-title="{{ $task->Title }}" >
             <i class="fa-solid fa-trash"></i>
         </button>
+        @endif
               
     </td>
 </tr>

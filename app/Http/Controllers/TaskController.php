@@ -36,27 +36,21 @@ class TaskController extends Controller
 
     public function show($id){
         $task = Task::find($id);
-        $projectId = $task->Project_Id;
-        $projectName = Project::find($projectId)->Name;   
-        return view('tasks.view', compact('projectName', 'task'));
-
+        if($task){
+            $projectId = $task->Project_Id;
+            $projectName = Project::find($projectId)->Name;   
+            return view('tasks.view', compact('projectName', 'task'));
+        }else {
+            return abort(404);
+        }
     }
-
-    // public function show(Request $request, $id) {
-    //     $task = Task::find($id);
- 
-    //     $projectId = $request->input('project_id');
-    //     $project = Project::find($projectId);
-    
-    
-    //     return view('projects.view', compact('project', 'task'));
-    // }
     
 
     public function edit($id){
+        $this->authorize('edit', Task::class); 
         $task = Task::find($id);
         if ($task) {
-            # code...
+
             return view('tasks.update', compact('task'));
         }
        
@@ -87,28 +81,26 @@ class TaskController extends Controller
     
 
 
-
     public function create(Request $request)
     {
-      
+        $this->authorize('create', Task::class); 
         $projectId = $request->input('project_id');
         $projectName = Project::find($projectId)->Name; 
         return view('tasks.create', compact('projectId', 'projectName'));
     }
     
 
-
     public function store(CreateTaskRequest $request)
     {
+        $this->authorize('store', Task::class);
         $input = $request->all();
         $this->taskRepository->create($input);
-
         return redirect()->route('tasks.index')->with('success', 'product added successfully');
     }
 
     public function destroy($id)
 {
-    // dd($id);
+    $this->authorize('destroy', Task::class);
     Task::find($id)->delete();
     return redirect()->route('tasks.index')->with('success', 'task deleted successfully');
 

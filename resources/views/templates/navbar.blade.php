@@ -33,18 +33,6 @@
           </li>
         </ul>
       </div>
-
-
-   
-
-
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt mt-1" style="font-size: 24px; color:#7f7f7f;"></i>
-        </a>
-      </li>
-  
-
     </ul>
   </nav>
   <!-- /.navbar -->

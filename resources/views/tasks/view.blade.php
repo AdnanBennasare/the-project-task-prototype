@@ -72,9 +72,12 @@
 
                 <div class="card-footer">
                     <div class="d-flex">
+                         @if (Auth::user()->role == "project_leader")
+
                         <div class="p-2">
                             <a href="{{route('tasks.edit', $task->id)}}" class="btn btn-warning">Editer</a>
                         </div>
+                        @endif
 
                         <div class="ml-auto p-2">
                             <a href="{{route('tasks.index')}}" class="btn btn-secondary">Anuler</a>

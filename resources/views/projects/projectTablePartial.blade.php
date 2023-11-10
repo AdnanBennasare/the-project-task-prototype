@@ -28,13 +28,15 @@
     <td>{{ $project->End_Date }}</td>
 
     <td class="text-center">
+        <a class="btn btn-primary btn-sm" href="{{route('projects.show', $project->id)}}">
+            <i class="fas fa-folder"></i>          
+        </a>
+        @if (Auth::user()->role == "project_leader")
+
         <a  class="btn btn-success btn-sm" style="font-size: 15px;" href='{{ route('tasks.create', ['project_id' => $project->id]) }}'>
             <i class="fas fa-plus"></i>
         </a>
-        <a class="btn btn-primary btn-sm" href="{{route('projects.show', $project->id)}}">
-            <i class="fas fa-folder"></i>
-            
-        </a>
+      
         <a class="btn btn-info btn-sm" href="{{route('projects.edit', $project->id)}}">
             <i class="fas fa-pencil-alt"></i>    
         </a>
@@ -42,7 +44,7 @@
         <button type="button" class="btn btn-danger delete-project" style="font-size: 11px;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-project-id="{{ $project->id }}" data-project-name="{{ $project->Name }}" >
             <i class="fa-solid fa-trash-can"></i>
         </button>
-              
+          @endif    
     </td>
 </tr>
 @endforeach

@@ -13,12 +13,11 @@
   
         <div class="card-body">
   
-              <div class="form-group">
-             
+              <div class="form-group">          
                   <label for="email">Email</label>
                   <input type="email" name="email" id="email" class="form-control" placeholder="email" value="{{old('email')}}"  required autofocus autocomplete="username" />
                   @if($errors->has('email'))
-                   <div class="alert alert-danger mt-2">
+                   <div class="text-danger">
                       {{ $errors->first('email') }}
                   </div>
                   @endif   
@@ -31,7 +30,7 @@
               <label for="password">Password</label>
               <input type="password" name="password" id="password" class="form-control" placeholder="Password" required autocomplete="new-password" />
               @if($errors->has('password'))
-               <div class="alert alert-danger mt-2">
+               <div class="text-danger">
                   {{ $errors->first('password') }}
               </div>
               @endif   
@@ -59,11 +58,8 @@
               </a>
           @endif
   
-         
-          {{-- <a href="{{ route('register') }}">don't have acount register</a> --}}
-  
-      </div>
-  
+          
+      </div> 
       </form>
     </div>
   </div>

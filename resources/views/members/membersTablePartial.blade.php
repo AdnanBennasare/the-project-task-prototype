@@ -9,15 +9,17 @@
 
                 </tr>
             </thead>
+    
+
             <tbody id="tbodyresults">
                 @foreach($members as $member)
-                @if (!$member->role == "project_leader")
+                @if($member->role !== 'project_leader')
                 <tr>
                     <td>{{ $member->name }}</td>
                     <td>{{ $member->email }}</td>
             
                     <td class="text-center">
-                        <a class="btn btn-primary btn-sm" href="">
+                        <a class="btn btn-primary btn-sm" href="{{route('members.show', $member->id)}}">
                             <i class="fas fa-folder"></i>
                         </a>
                         <button type="button" class="btn btn-danger delete-member" style="font-size: 11px;" data-bs-toggle="modal" data-bs-target="#exampleModal" data-member-id="{{ $member->id }}" data-member-name="{{ $member->name }}" >
@@ -25,7 +27,7 @@
                         </button>
                     </td>
                 </tr>
-            @endif
+                @endif
             @endforeach
             </tbody>
         </table>

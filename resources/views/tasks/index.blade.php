@@ -32,7 +32,7 @@
                   <div class=""> <!-- Use d-flex and justify-content-between classes -->
                     <div class="float-left"> <!-- Set width for select element -->
                         <select id="filter_by_projects" class="js-example-basic-single" style="width:250px;" name="project">
-                            <option value=""> -- Filtrer par projet --</option>
+                            <option value=""> -- Tous les Projets --</option>
                             @foreach($projects as $project)
                                 <option value="{{ $project->Name }}">{{ $project->Name }}</option>
                             @endforeach
@@ -85,76 +85,6 @@ $(document).ready(function() {
         $('#deleteForm').attr('action', deleteUrl);
     });
 });
-
-
-
-
-
-
-
-
-
-// const search = (query = '', project = '', page = 1) => {
-//     $.ajax('{{ route('tasks.index') }}', {
-//         data: {
-//             query: query,
-//             project: project,
-//             page: page
-//         },
-//         success: (data) => updateTable(data)
-//     });
-//     history.pushState(null, null, `?query=${query}&project=${project}&page=${page}`);
-// };
-
-
-// const updateTable = (html) => {
-//     try {
-//         $('#resulthtml').html(html); // Target the tbody element and update its content
-//         updatePaginationLinks();
-//         console.log(html);
-//     } catch (error) {
-//         // console.error('Error updating table:', error);
-//     }
-// };
-
-
-// const updatePaginationLinks = () => {
-//     // console.log('updatePaginationLinks');
-
-//             $('button[page-number]').each(function() {
-//                 $(this).on('click', function() {
-//                 // console.log('click');
-
-//                     pageNumber = $(this).attr('page-number')
-//                     search(searchQuery, pageNumber)
-//                 })
-//             })
-//         }
-     
-
-        
-//         $(document).ready(() => {
-//     $('#searchInput').on('input', function() {
-//         searchQuery = $('#searchInput').val();
-//         const selectedProject = $('#filter_by_projects').val();
-//         search(searchQuery, selectedProject);
-//     });
-
-//     $('#filter_by_projects').on('change', function() {
-//         searchQuery = $('#searchInput').val();
-//         const selectedProject = $(this).val();
-//         search(searchQuery, selectedProject);
-//     });
-
-//     updatePaginationLinks();
-// });
-
-
-
-
-
-
-
 
 
 

@@ -42,7 +42,7 @@
                         @enderror
                         </div>
                   </div>
-                  <input type="hidden" value="member" name="member">
+                  <input type="hidden" value="member" name="role">
 
                   <div class="form-group">
                     <label for="email">L'email de Member</label>

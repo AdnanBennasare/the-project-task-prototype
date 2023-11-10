@@ -72,10 +72,7 @@
                       <h5 class="card-title m-0">End date</h5>
                     </div>
                     <div class="card-body">
-
-
                       <p class="card-text">{{$project->End_Date}}</p>
-
                     </div>
                   </div>
 
@@ -85,9 +82,11 @@
 
                 <div class="card-footer">
                     <div class="d-flex">
+                   @if (!Auth::user()->role == "member")
                         <div class="p-2">
                             <a href="{{route('projects.edit', $project->id)}}" class="btn btn-warning">Editer</a>
                         </div>
+                        @endif
 
                         <div class="ml-auto p-2">
                             <a href="{{route('projects.index')}}" class="btn btn-secondary">Anuler</a>
