@@ -25,9 +25,15 @@
         @if(session('success'))
          <div class="alert alert-success">
         {{ session('success') }}
-         </div>
+         </div>     
            @endif  
-
+           @if(session('error'))
+           <div class="alert alert-danger">
+          {{ session('error') }}
+           </div>
+           
+             @endif 
+           
             <!-- Small boxes (Stat box) -->
             <div class="card">
                 <div class="card-header">
@@ -41,19 +47,18 @@
                         @endif
                       {{-- search input  --}}
                       
-                        <div class="float-right">                           
-                            <div class="input-group input-group-sm">
-                                <!-- SEARCH input -->
-                                <input type="text" name="search" id="searchInput" class="form-control" placeholder="Search">
-                             
-                            </div>                 
-                          </div>  
+                      <div class="input-group input-group-sm float-right search-container" style="width: 190px;">
+                        <!-- SEARCH input -->
+                        <input style="height: 35px;" type="text" name="search" id="searchInput" class="form-control" placeholder="Search...">
+                        <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
               
                 </div>
                 <div id="resulthtml">
 
                     @include('projects.projectTablePartial')
                 </div>
+
 
 
               </div>
@@ -70,7 +75,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
- 
+
 
 
 $(document).ready(function() {
@@ -147,6 +152,7 @@ const updatePaginationLinks = () => {
         updatePaginationLinks();
     });
   
-
+    
+   
 
 </script>

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\Exports\MemberExport;
+use App\Imports\MemberImport;
 use Illuminate\Validation\Rules;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\RedirectResponse;
 
 
@@ -21,6 +24,49 @@ class UserController extends Controller
     public function __construct(UserRepository $UserRepository)
     {
         $this->userRepository = $UserRepository;
+    }
+
+
+    public function export() 
+    {
+    $authorization = Gate::inspect('viewMembers', User::class);
+    if ($authorization->allowed()) {
+
+    
+       return Excel::download(new MemberExport, 'Member.xlsx');
+    } else {
+        abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
+    }
+    }
+
+    public function import(Request $request)
+    {
+     
+        $authorization = Gate::inspect('viewMembers', User::class);
+        if ($authorization->allowed()) {
+        $request->validate([
+            'members' => 'required|mimes:xlsx,xls',
+        ]);
+    
+        $import = new MemberImport;
+        try {
+            $importedRows = Excel::import($import, $request->file('members'));
+        
+            if($importedRows) {
+          
+                $successMessage = 'File imported successfully.';
+            } else {
+                $successMessage = 'No new data to import.';
+            }
+    
+            return redirect('/members')->with('success', $successMessage);
+        } catch (\Exception $e) {
+            // Handle the exception, e.g., log the error or display an error message.
+            return redirect('/members')->with('error', $e->getMessage());
+        }
+    } else {
+        abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
+    }
     }
 
 

@@ -1,4 +1,4 @@
-<div class="card" id="tablecontainer">
+<div class="" id="tablecontainer">
     <div class="card-body p-0 table-data">
         <table class="table table-striped">
             <thead>
@@ -85,7 +85,6 @@
 
 
     <div class="card-footer clearfix">
-        <div class="row">
             <div class="float-right">
             <div id="paginationContainer">                 
                 @if ($projects->count() > 0)
@@ -122,10 +121,41 @@
                 </ul>
             @endif              
             </div>
-        </div>                                          
-        </div>        
-    </div>
+        </div>
+        @if (Auth::user()->role == "project_leader")
+        <div class="float-left d-flex">
+            <a href="{{route('export.project')}}"style="height: 38px;" class="btn text-black border border-dark">
+                Export <i class="fa-solid fa-upload pl-2"></i>
+            </a>
+            
+  
+            
+            <form action="{{ route('import.project') }}" class="pl-1" method="post" enctype="multipart/form-data" id="importForm">
+                @csrf 
+                <input type="file" name="projects" id="formFileInput" style="position: absolute; left: -9999px;">
+                <button type="button" id="fileButton" class="btn text-black border border-dark">Import <i class="fa-solid fa-download pl-2"></i></button>
+            </form>
 
+            
+        </div>
+
+        <script>
+        $(document).ready(function() {
+            $('#fileButton').click(function() {
+                $('#formFileInput').click();
+            });
+        
+            $('#formFileInput').change(function() {
+                // Assuming you want to submit the form when a file is selected
+                $('#importForm').submit();
+            });
+        });
+        </script>
+        @endif
+ 
+        
+    </div>
+  
 </div>
 
 

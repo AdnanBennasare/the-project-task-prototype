@@ -28,6 +28,13 @@ public function update(User $user)
     return $user->role === 'project_leader';
 }
 
+public function export(User $user) {
+    return $user->role === 'project_leader';
+}
+public function import(User $user) {
+    return $user->role === 'project_leader';
+}
+
 public function delete(User $user)
 {
     return $user->role === 'project_leader';

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\Project;
+use App\Exports\TaskExport;
+use App\Imports\TaskImport;
 use Illuminate\Http\Request;
 use App\Repositories\TaskRepository;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\CreateTaskRequest;
 
 
@@ -19,6 +22,40 @@ class TaskController extends Controller
     {
         $this->taskRepository = $TaskRepository;
     }
+
+
+    public function import(Request $request)
+    {
+        $this->authorize('import', Task::class);
+    
+        $request->validate([
+            'tasks' => 'required|mimes:xlsx,xls',
+        ]);
+    
+        $import = new TaskImport;
+    
+        try {
+            $importedRows = Excel::import($import, $request->file('tasks'));
+        
+            if($importedRows) {
+                $successMessage = 'File imported successfully.';
+            } else {
+                $successMessage = 'No new data to import.';
+            }
+    
+            return redirect('/tasks')->with('success', $successMessage);
+        } catch (\Exception $e) {
+            // Handle the exception, e.g., log the error or display an error message.
+            return redirect('/tasks')->with('error', 'an error has been acourd check the syntax');
+        }
+    }
+    
+    public function export() 
+    {
+       $this->authorize('export', Task::class);
+       return Excel::download(new TaskExport, 'Tasks.xlsx');
+    }
+
 
     public function update(CreateTaskRequest $request, $id)
     {

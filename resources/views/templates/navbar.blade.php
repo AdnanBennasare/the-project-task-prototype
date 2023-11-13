@@ -8,19 +8,23 @@
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-
-    
-  
+    <ul class="navbar-nav ml-auto mr-4">
 
       <div class="dropdown">
         <div class="profile-icon" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           {{-- <i class="fa-regular fa-user"></i> --}}
-          <h6><i class="bi bi-person-circle mt-3" style="font-size: 31px; color:#7f7f7f;"></i>
-            {{ Auth::user()->name }}</h6>
+          
+          <div style="display: inline-block;">
+            <h6 style="display: inline; margin: 0;">
+                <i class="bi bi-person-circle mt-3" style="font-size: 31px; color:#7f7f7f;"></i>
+                {{ Auth::user()->name }}
+            </h6>
+            <i style="color: #7f7f7f; vertical-align: middle;" class="fa-solid fa-caret-down ml-2"></i>
+        </div>
+        
           
         </div>
-        <ul class="dropdown-menu" aria-labelledby="profileDropdown" style="right: -50px; left: auto;">
+        <ul class="dropdown-menu" aria-labelledby="profileDropdown" style="right: -10px; left: auto;">
           <li><a class="dropdown-item" href="{{ route('projects.profileEdit') }}">{{ __('Profile') }}</a></li>
           <li>
             <form method="POST" action="{{ route('logout') }}">

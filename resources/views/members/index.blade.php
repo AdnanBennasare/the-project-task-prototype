@@ -21,14 +21,19 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-
+        
         @if(session('success'))
             <div class="alert alert-success">
                 {{session('success')}}
             </div>
         @endif
 
-
+        @if(session('error'))
+        <div class="alert alert-danger">
+       {{ session('error') }}
+        </div>
+        
+          @endif 
             <!-- Small boxes (Stat box) -->
             <div class="card">
                 <div class="card-header">
@@ -40,13 +45,11 @@
                         </div>
                       {{-- search input  --}}
                       
-                        <div class="">                           
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <!-- SEARCH input -->
-                                    <input type="text" name="search" id="searchInput" class="form-control float-right" placeholder="Search">                             
-                            </div>
-                     
-                          </div>  
+                      <div class="input-group input-group-sm float-right search-container" style="width: 190px;">
+                        <!-- SEARCH input -->
+                        <input style="height: 35px;" type="text" name="search" id="searchInput" class="form-control searchInput" placeholder="Search...">
+                        <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
                           
                     </div>
                 </div>

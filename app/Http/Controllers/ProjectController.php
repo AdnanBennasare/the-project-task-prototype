@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Exports\ProjectExport;
+use App\Imports\ProjectImport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Repositories\ProjectRepository;
 use App\Http\Requests\CreateProjectRequest;
 
@@ -24,7 +27,40 @@ class ProjectController extends Controller
      * Display a listing of the Project.
      */
 
+     public function export() 
+     {
+        $this->authorize('export', Project::class);
+        return Excel::download(new ProjectExport, 'Projects.xlsx');
+     }
 
+
+     public function import(Request $request)
+{
+    $this->authorize('import', Project::class);
+
+    $request->validate([
+        'projects' => 'required|mimes:xlsx,xls',
+    ]);
+
+    $import = new ProjectImport;
+
+    try {
+        $importedRows = Excel::import($import, $request->file('projects'));
+    
+        if($importedRows) {
+            $successMessage = 'File imported successfully.';
+        } else {
+            $successMessage = 'No new data to import.';
+        }
+
+        return redirect('/projects')->with('success', $successMessage);
+    } catch (\Exception $e) {
+        // Handle the exception, e.g., log the error or display an error message.
+        return redirect('/projects')->with('error', 'an error has  been acourd check for dublicate data');
+    }
+}
+
+     
 
     public function index(Request $request)
     {

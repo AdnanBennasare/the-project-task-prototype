@@ -7,6 +7,14 @@ use App\Models\Task;
 
 class TaskPolicy
 {
+    public function export(User $user)
+    {
+        return $user->role === 'project_leader';
+    }
+    public function import(User $user)
+    {
+        return $user->role === 'project_leader';
+    }
     public function create(User $user)
     {
         return $user->role === 'project_leader';

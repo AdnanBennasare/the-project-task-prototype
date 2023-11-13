@@ -33,6 +33,16 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
+
+    
+    Route::get('tasks/export', [TaskController::class, 'export'])->name('export.task');
+    Route::post('tasks/import', [TaskController::class, 'import'])->name('import.task');
+
+    Route::get('projects/export', [ProjectController::class, 'export'])->name('export.project');
+    Route::post('projects/import', [ProjectController::class, 'import'])->name('import.project');
+
+    Route::get('members/export', [UserController::class, 'export'])->name('export.member');
+    Route::post('members/import', [UserController::class, 'import'])->name('import.member');
     
     Route::resource('tasks', TaskController::class);
     Route::resource('projects', ProjectController::class);

@@ -27,6 +27,14 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('projectleader1234'),
             'role' => 'project_leader',
             'remember_token' => Str::random(10),
+            
+            // 'name' => Str::random(10),
+            // 'email' => Str::random(8) . '@example.com',
+            // 'email_verified_at' => now(),
+            // 'password' => bcrypt('secret'), // You might want to generate a random password instead
+            // 'role' => 'member',
+            // 'remember_token' => Str::random(10),
+            
         ];
     }
 
