@@ -48,15 +48,15 @@ class ProjectController extends Controller
         $importedRows = Excel::import($import, $request->file('projects'));
     
         if($importedRows) {
-            $successMessage = 'File imported successfully.';
+            $successMessage = 'Fichier importé avec succès.';
         } else {
-            $successMessage = 'No new data to import.';
+            $successMessage = 'Pas de nouvelles données à importer.';
         }
 
         return redirect('/projects')->with('success', $successMessage);
     } catch (\Exception $e) {
         // Handle the exception, e.g., log the error or display an error message.
-        return redirect('/projects')->with('error', 'an error has  been acourd check for dublicate data');
+        return redirect('/projects')->with('error', 'une erreur a été commise, veuillez vérifier les données dublicate');
     }
 }
 
@@ -85,7 +85,7 @@ class ProjectController extends Controller
         $this->authorize('store', Project::class);
         $input = $request->all();
         $this->projectRepository->create($input);
-        return redirect()->route('projects.index')->with('success', 'project added successfully');
+        return redirect()->route('projects.index')->with('success', 'projet ajouté avec succès');
     }
 
     public function show($id){
@@ -108,28 +108,37 @@ class ProjectController extends Controller
         
     }
 
-    public function update(CreateProjectRequest $request, $id)
+    public function update(Request $request, $id)
 {
     $this->authorize('update', Project::class);
     $project = Project::find($id);
 
     if (!$project) {
-        return redirect()->route('projects.index')->with('error', 'Project not found');
+        return redirect()->route('projects.index')->with('error', 'Projet introuvable');
     }
+
+    $request->validate([
+        'name' => 'required|unique:projects,name,' . $id,
+        'description' => 'nullable|string|max:1000',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+    ]);
 
     $input = $request->all();
 
     $project->update($input);
 
-    return redirect()->route('projects.index')->with('success', 'Project updated successfully');
+    return redirect()->route('projects.index')->with('success', 'Projet mis à jour avec succès');
 }
+
+    
 
 
 public function destroy($id)
 {
     $this->authorize('destroy', Project::class);
     Project::find($id)->delete();
-    return redirect()->route('projects.index')->with('success', 'Project deleted successfully');
+    return redirect()->route('projects.index')->with('success', 'Projet supprimé avec succès');
 }
 
 }

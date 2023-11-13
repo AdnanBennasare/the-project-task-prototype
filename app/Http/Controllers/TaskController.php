@@ -38,15 +38,15 @@ class TaskController extends Controller
             $importedRows = Excel::import($import, $request->file('tasks'));
         
             if($importedRows) {
-                $successMessage = 'File imported successfully.';
+                $successMessage = 'Fichier importé avec succès.';
             } else {
-                $successMessage = 'No new data to import.';
+                $successMessage = 'Pas de nouvelles données à importer.';
             }
     
             return redirect('/tasks')->with('success', $successMessage);
         } catch (\Exception $e) {
             // Handle the exception, e.g., log the error or display an error message.
-            return redirect('/tasks')->with('error', 'an error has been acourd check the syntax');
+            return redirect('/tasks')->with('error', 'une erreur a été acourd vérifier la syntaxe');
         }
     }
     
@@ -57,16 +57,24 @@ class TaskController extends Controller
     }
 
 
-    public function update(CreateTaskRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $this->authorize('update', Task::class);
     
         $task = Task::find($id);
         if (!$task) {
-            return redirect()->route('tasks.index')->with('error', 'task not found');
+            return redirect()->route('tasks.index')->with('error', 'tâche introuvable');
         }
+        $request->validate([
+            'title' => 'required|unique:tasks,title,' . $id,
+            'description' => 'nullable|string|max:1000',
+            'project_id' => 'required|integer',
+           
+        ]);
+
         $input = $request->all();
         $task->update($input);
-        return redirect()->route('tasks.index')->with('success', 'task updated successfully');
+        return redirect()->route('tasks.index')->with('success', 'tâche mise à jour avec succès');
     }
  
 
@@ -132,14 +140,14 @@ class TaskController extends Controller
         $this->authorize('store', Task::class);
         $input = $request->all();
         $this->taskRepository->create($input);
-        return redirect()->route('tasks.index')->with('success', 'product added successfully');
+        return redirect()->route('tasks.index')->with('success', 'produit ajouté avec succès');
     }
 
     public function destroy($id)
 {
     $this->authorize('destroy', Task::class);
     Task::find($id)->delete();
-    return redirect()->route('tasks.index')->with('success', 'task deleted successfully');
+    return redirect()->route('tasks.index')->with('success', 'tâche supprimée avec succès');
 
 }
 

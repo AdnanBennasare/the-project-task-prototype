@@ -18,7 +18,7 @@ class Task extends Model
 
     public static $rules = [
         'title' => 'required|unique:tasks,title',
-        'description' => 'required|string|max:1000',
+        'description' => 'nullable|string|max:1000',
         'project_id' => 'required|integer',
     ];
     

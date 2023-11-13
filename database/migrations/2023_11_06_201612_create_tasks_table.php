@@ -15,7 +15,7 @@ return new class extends Migration
 
                 $table->id();
                 $table->string('Title')->unique();
-                $table->string('Description');
+                $table->string('Description')->nullable();;
                 $table->unsignedBigInteger('Project_Id');
                 $table->foreign('Project_Id')->references('id')->on('projects')->onDelete('cascade');
                 $table->timestamps();

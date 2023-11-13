@@ -54,15 +54,16 @@ class UserController extends Controller
         
             if($importedRows) {
           
-                $successMessage = 'File imported successfully.';
+                $successMessage = 'Fichier importé avec succès.';
             } else {
-                $successMessage = 'No new data to import.';
+                $successMessage = 'Pas de nouvelles données à importer.';
             }
     
             return redirect('/members')->with('success', $successMessage);
         } catch (\Exception $e) {
-            // Handle the exception, e.g., log the error or display an error message.
-            return redirect('/members')->with('error', $e->getMessage());
+            return redirect('/members')->with('error', 'une erreur a été acourd vérifier la syntaxe');
+           
+            // return redirect('/members')->with('error', $e->getMessage());
         }
     } else {
         abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
@@ -89,7 +90,7 @@ class UserController extends Controller
         ]);
     
         // Return a redirect response with a success message and the name of the user added
-        return redirect()->route('members.index')->with('success', 'User added successfully');
+        return redirect()->route('members.index')->with('success', 'Utilisateur ajouté avec succès');
     } else {
         // User is not authorized, handle the unauthorized access
          abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
