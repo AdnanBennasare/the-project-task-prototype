@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Task details</h1>
+                    <h1 class="m-0">détails de la tâche</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -27,7 +27,7 @@
             <!-- general form elements -->
             <div class="col-md-8 card card-secondary card-create">
               <div class="card-header">
-                <h3 class="card-title">Afficher task</h3>
+                <h3 class="card-title">Afficher la tâche</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -36,7 +36,7 @@
 
                   <div class="card card-secondary card-outline">
                     <div class="card-header">
-                      <h5 class="card-title m-0">Title</h5>
+                      <h5 class="card-title m-0">Titre du tâche</h5>
                     </div>
                     <div class="card-body">
 
@@ -47,7 +47,7 @@
                   </div>
                   <div class="card card-secondary card-outline">
                     <div class="card-header">
-                      <h5 class="card-title m-0">Description</h5>
+                      <h5 class="card-title m-0">Description du tâche</h5>
                     </div>
                     <div class="card-body">
 
@@ -58,7 +58,7 @@
                   </div>
                   <div class="card card-secondary card-outline">
                     <div class="card-header">
-                      <h5 class="card-title m-0">project name</h5>
+                      <h5 class="card-title m-0">le nom du project</h5>
                     </div>
                     <div class="card-body">
 
@@ -80,7 +80,7 @@
                         @endif
 
                         <div class="ml-auto p-2">
-                            <a href="{{route('tasks.index')}}" class="btn btn-secondary">Anuler</a>
+                            <a href="{{route('tasks.index')}}" class="btn btn-secondary">Annuler</a>
                         </div>
                       </div>
 

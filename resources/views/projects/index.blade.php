@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Projects</h1>
+                    <h1 class="m-0">Les projets</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -49,7 +49,7 @@
                       
                       <div class="input-group input-group-sm float-right search-container" style="width: 190px;">
                         <!-- SEARCH input -->
-                        <input style="height: 35px;" type="text" name="search" id="searchInput" class="form-control" placeholder="Search...">
+                        <input style="height: 35px;" type="text" name="search" id="searchInput" class="form-control" placeholder="Rechercher...">
                         <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                     </div>
               

@@ -7,13 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>General Form</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
-            </ol>
+            <h1>Modifier tâche</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -26,7 +20,7 @@
             <!-- general form elements -->
             <div class="card card-info">
               <div class="card-header">
-              <h3 class="card-title">update Task</h3>
+              <h3 class="card-title">éditer la tâche</h3>
               </div>
               <!-- .card-header -->
               <!-- form start -->
@@ -36,8 +30,8 @@
                 <div class="card-body">
                 <input type="hidden" name="project_id" value="{{$task->Project_Id}}">
                   <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" value="{{$task->Title}}" name="title" id="title" placeholder="Enter Task title">
+                    <label for="title">Titre du tâche</label>
+                    <input type="text" class="form-control" value="{{$task->Title}}" name="title" id="title" placeholder="saisir le Titre du tâche">
                     <div style="color:red">
                         @error("title")
                         {{$message}}
@@ -46,8 +40,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" value="{{$task->Description}}" id="description" name="description" placeholder="Enter Description">
+                    <label for="description">Description du tâche</label>
+                    <input type="text" class="form-control" value="{{$task->Description}}" id="description" name="description" placeholder="saisir la Description du tâche">
                     <div style="color:red">
                         @error("description")
                         {{$message}}
@@ -60,7 +54,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-info">update task</button>
+                  <button type="submit" class="btn btn-info">modifier</button>
            
                     <a href="{{route('projects.index')}}" type="submit" class="btn btn-secondary">Annuler</a>
   

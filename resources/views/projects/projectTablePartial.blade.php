@@ -3,10 +3,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Project Name</th>
-                    <th>Project Description</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
+                    <th>Nom du Projet</th>
+                    <th>Description du Projet</th>
+                    <th>Date de Début</th>
+                    <th>date de fin</th>
                    <th class="text-center" >Actions</th>
 
                 </tr>
@@ -74,8 +74,8 @@
                     <!-- Modal body content here -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete projet</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-danger">Suprimer le projet</button>
                 </div>
             </form>
         </div>
@@ -125,7 +125,7 @@
         @if (Auth::user()->role == "project_leader")
         <div class="float-left d-flex">
             <a href="{{route('export.project')}}"style="height: 38px;" class="btn text-black border border-dark">
-                Export <i class="fa-solid fa-upload pl-2"></i>
+                Exporter <i class="fa-solid fa-upload pl-2"></i>
             </a>
             
   
@@ -133,7 +133,7 @@
             <form action="{{ route('import.project') }}" class="pl-1" method="post" enctype="multipart/form-data" id="importForm">
                 @csrf 
                 <input type="file" name="projects" id="formFileInput" style="position: absolute; left: -9999px;">
-                <button type="button" id="fileButton" class="btn text-black border border-dark">Import <i class="fa-solid fa-download pl-2"></i></button>
+                <button type="button" id="fileButton" class="btn text-black border border-dark">importer <i class="fa-solid fa-download pl-2"></i></button>
             </form>
 
             

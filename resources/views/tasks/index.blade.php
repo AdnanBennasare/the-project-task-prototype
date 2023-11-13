@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Tasks</h1>
+                    <h1 class="m-0">Les tâches</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -31,7 +31,7 @@
            </div>
            
              @endif 
-             
+
 
             <!-- Small boxes (Stat box) -->
             <div class="card">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="input-group input-group-sm float-right search-container" style="width: 190px;">
                         <!-- SEARCH input -->
-                        <input style="height: 35px;" type="text" name="search" id="searchInput" class="form-control" placeholder="Search...">
+                        <input style="height: 35px;" type="text" name="search" id="searchInput" class="form-control" placeholder="Rechercher...">
                         <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ $(document).ready(function() {
         console.log(deleteUrl);
 
         // Update modal content with the task name
-        $('#exampleModal .modal-body').html('<div>Si vous êtes sûr de vouloir supprimer ce task <strong>"' + taskName + '"</strong> cliquez sur Supprimer pour continuer</div>');          
+        $('#exampleModal .modal-body').html('<div>Si vous êtes sûr de vouloir supprimer ce tâche <strong>"' + taskName + '"</strong> cliquez sur Supprimer pour continuer</div>');          
         // Update form action URL
         $('#deleteForm').attr('action', deleteUrl);
     });

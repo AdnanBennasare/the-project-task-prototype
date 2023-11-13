@@ -3,8 +3,8 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Membre Name</th>
-                    <th>Membre Email</th>             
+                    <th>Le Nom de Membre</th>
+                    <th>L'email Membre</th>             
                    <th class="text-center" >Actions</th>
 
                 </tr>
@@ -107,13 +107,13 @@
         @if (Auth::user()->role == "project_leader")
         <div class="float-left d-flex">
             <a href="{{route('export.member')}}" style="height: 38px;" class="btn text-black border border-dark">
-                Export <i class="fa-solid fa-upload pl-2"></i>
+                Exporter <i class="fa-solid fa-upload pl-2"></i>
             </a>
             
             <form action="{{ route('import.member') }}" class="pl-1" method="post" enctype="multipart/form-data" id="importForm">
                 @csrf 
                 <input type="file" name="members" id="formFileInputmembers" style="position: absolute; left: -9999px;">
-                <button type="button" id="fileButtonmembers" class="btn text-black border border-dark">Import <i class="fa-solid fa-download pl-2"></i></button>
+                <button type="button" id="fileButtonmembers" class="btn text-black border border-dark">Importer <i class="fa-solid fa-download pl-2"></i></button>
             </form>
 
             

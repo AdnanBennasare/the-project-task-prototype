@@ -7,11 +7,11 @@
           <!-- jquery validation -->
           <div class="card card-danger">
             <div class="card-header">
-              <h3 class="card-title"> <strong> Delete acount </strong></h3>
+              <h3 class="card-title"> <strong> Supprimer le compte </strong></h3>
             </div>
             <div class="card-body">
-              Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, <br>
-              please download any data or information that you wish to retain.
+              Une fois votre compte supprimé, toutes ses ressources et données seront définitivement supprimées. Avant de supprimer votre compte, <br>
+              Veuillez télécharger toutes les données ou informations que vous souhaitez conserver.
               <x-input-error :messages="$errors->userDeletion->get('password')" />
             </div>
 
@@ -20,7 +20,7 @@
      
 
      <div class="card-footer">
-       <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">Delete Account</button>
+       <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">Supprimer le compte</button>
      </div>
           </div>
           <!-- /.card -->

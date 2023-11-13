@@ -25,13 +25,13 @@
           
         </div>
         <ul class="dropdown-menu" aria-labelledby="profileDropdown" style="right: -10px; left: auto;">
-          <li><a class="dropdown-item" href="{{ route('projects.profileEdit') }}">{{ __('Profile') }}</a></li>
+          <li><a class="dropdown-item" href="{{ route('projects.profileEdit') }}">{{ __('Profil') }}</a></li>
           <li>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
               <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault(); this.closest('form').submit();">
-                {{ __('Log Out') }}
+                {{ __('Déconnexion') }}
               </a>
             </form>
           </li>

@@ -3,9 +3,9 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>tasks Name</th>
-                    <th>tasks Description</th>
-                    <th>Project Name</th>
+                    <th>Titre du tâche</th>
+                    <th>Description du tâche</th>
+                    <th>Le Nom Project</th>
                     <th class="project-actions text-center">Actions</th>        
                 </tr>
             </thead>
@@ -58,7 +58,7 @@
                 @method("DELETE")
 
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="exampleModalLabel">vous êtes sûr de vouloir supprimer ce Task ?</h3>
+                    <h3 class="modal-title fs-5" id="exampleModalLabel">vous êtes sûr de vouloir supprimer ce tâche ?</h3>
                     <div type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" >
                         <i class="fa-solid fa-x"></i>
                     </div>
@@ -68,8 +68,8 @@
                     <!-- Modal body content here -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
                 </div>
             </form>
         </div>
@@ -120,7 +120,7 @@
         @if (Auth::user()->role == "project_leader")
         <div class="float-left d-flex">
             <a href="{{route('export.task')}}"style="height: 38px;" class="btn text-black border border-dark">
-                Export <i class="fa-solid fa-upload pl-2"></i>
+                Exporter <i class="fa-solid fa-upload pl-2"></i>
             </a>
             
   
@@ -128,7 +128,7 @@
             <form action="{{ route('import.task') }}" class="pl-1" method="post" enctype="multipart/form-data" id="importForm">
                 @csrf 
                 <input type="file" name="tasks" id="formFileInputtasks" style="position: absolute; left: -9999px;">
-                <button type="button" id="importbutton" class="btn text-black border border-dark">Import <i class="fa-solid fa-download pl-2"></i></button>
+                <button type="button" id="importbutton" class="btn text-black border border-dark">Importer <i class="fa-solid fa-download pl-2"></i></button>
             </form>
 
             

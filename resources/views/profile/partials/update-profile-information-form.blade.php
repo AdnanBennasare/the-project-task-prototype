@@ -7,7 +7,7 @@
           <!-- jquery validation -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title"> <strong> Profile Information </strong></h3>
+              <h3 class="card-title"> <strong> Informations de Profil </strong></h3>
             </div>
             <form id="send-verification" method="post" action="{{ route('verification.send') }}">
                 @csrf
@@ -19,9 +19,9 @@
                 @method('patch')
 
               <div class="card-body">
-                <p>Update your account's profile information and email address.</p>
+                <p>Mettez à jour les informations de profil et l’adresse e-mail de votre compte.</p>
                 <div class="form-group">
-                    <label for="name">Name</label>         
+                    <label for="name">Le Nom</label>         
                     <input type="text" name="name" class="form-control" value="{{old('name', $user->name)}}" id="name" placeholder="Enter name" required autofocus autocomplete="name" >
                     @if($errors->has('name'))
                     <div class="alert alert-danger mt-2">
@@ -32,7 +32,8 @@
        
 
                 <div class="form-group">
-                  <label for="email">Email address</label>
+                  <label for="email">Adresse E-mail
+                  </label>
                   <input type="email" name="email" class="form-control" id="email" value={{old('email', $user->email)}} required autocomplete="username" placeholder="Enter email">
                   @if($errors->has('email'))
                   <div class="alert alert-danger mt-2">
@@ -73,7 +74,7 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer">              
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
               </div>
             </form>
           </div>

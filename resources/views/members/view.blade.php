@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Task details</h1>
+                    <h1 class="m-0">Détail du Membre</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -36,7 +36,7 @@
 
                   <div class="card card-secondary card-outline">
                     <div class="card-header">
-                      <h5 class="card-title m-0">le nom de membre</h5>
+                      <h5 class="card-title m-0">le Nom de Membre</h5>
                     </div>
                     <div class="card-body">
 
@@ -64,7 +64,7 @@
               
 
                         <div class="ml-auto p-2">
-                            <a href="{{route('members.index')}}" class="btn btn-secondary">Anuler</a>
+                            <a href="{{route('members.index')}}" class="btn btn-secondary">Annuler</a>
                         </div>
                       </div>
 

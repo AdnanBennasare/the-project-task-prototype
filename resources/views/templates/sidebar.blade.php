@@ -16,12 +16,12 @@
           <li class="nav-item menu-open">
 
 
-          <li class="nav-header">Projects Tasks</li>
+          <li class="nav-header">Les Projets & tâches</li>
           <li class="nav-item">
             <a href="{{route('projects.index')}}" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
-                projects      
+                projets      
               </p>
             </a>
           </li>
@@ -29,7 +29,7 @@
             <a href="{{route('tasks.index')}}" class="nav-link">
               <i class="fa-solid fa-list-check pl-1 pr-2"></i>
               <p>
-                tasks
+                tâches
               </p>
             </a>
           </li>
@@ -38,7 +38,7 @@
             <a href="{{route('members.index')}}" class="nav-link">
               <i class="fa-solid fa-users pl-1 pr-1"></i>
               <p>
-                members
+                membres
               </p>
             </a>
           </li>

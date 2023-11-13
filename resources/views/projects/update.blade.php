@@ -7,13 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>General Form</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
-            </ol>
+            <h1>Modifier Projet</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -26,7 +20,7 @@
             <!-- general form elements -->
             <div class="col-md-8 card card-info">
               <div class="card-header">
-                <h3 class="card-title">update a Project</h3>
+                <h3 class="card-title">éditer le Projet</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -35,8 +29,8 @@
                 @method("PUT")
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="Name">Name</label>
-                    <input type="text" class="form-control" value="{{ $project->Name }}" name="name" id="Name" placeholder="Enter Project Name">
+                    <label for="Name">Nom du Projet</label>
+                    <input type="text" class="form-control" value="{{ $project->Name }}" name="name" id="Name" placeholder="saisir le nom du projet">
                     <div style="color:red">
                         @error("name")
                         {{$message}}
@@ -45,8 +39,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" value="{{ $project->Description }}" id="description" name="description" placeholder="Enter Description">
+                    <label for="description">Description du Projet</label>
+                    <input type="text" class="form-control" value="{{ $project->Description }}" id="description" name="description" placeholder="saisir la Description du Projet">
                     <div style="color:red">
                         @error("description")
                         {{$message}}
@@ -57,8 +51,8 @@
                
 
                   <div class="form-group">
-                    <label for="start_date">Start Date</label>
-                    <input type="date" class="form-control" value="{{$project->Start_Date }}" name="start_date" id="start_date" placeholder="Start Date">
+                    <label for="start_date">Date de Début</label>
+                    <input type="date" class="form-control" value="{{$project->Start_Date }}" name="start_date" id="start_date" placeholder="saisir la Date de Début">
                     <div style="color:red">
                         @error("start_date")
                         {{$message}}
@@ -67,8 +61,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="end_date">End Date</label>
-                    <input type="date" class="form-control" value="{{$project->End_Date}}" name="end_date" id="end_date" placeholder="End Date">
+                    <label for="end_date">date de fin</label>
+                    <input type="date" class="form-control" value="{{$project->End_Date}}" name="end_date" id="end_date" placeholder="saisir la date de fin">
                     <div style="color:red">
                       @error("end_date")
                       {{$message}}
@@ -81,7 +75,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Update</button>
+                  <button type="submit" class="btn btn-info">modifier</button>
            
                     <a href="{{route('projects.index')}}" type="submit" class="btn btn-secondary">Annuler</a>
   
