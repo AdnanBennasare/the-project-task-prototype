@@ -39,12 +39,13 @@
                 <div class="card-header">
                   
                       {{-- Add new project button  --}}
-                      @if (Auth::user()->role == "project_leader")
-                        <div class="float-left">
-                            <a href="{{route('projects.create')}}" class="btn btn-primary"><i
-                                    class="fa-solid fa-plus"></i></a>
-                        </div>
-                        @endif
+            
+                @can('create', App\Models\Project::class)
+                <div class="float-left">
+                <a href="{{ route('projects.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus"></i></a>
+                </div>
+                @endcan
+
                       {{-- search input  --}}
                       
                       <div class="input-group input-group-sm float-right search-container" style="width: 190px;">

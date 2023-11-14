@@ -82,7 +82,7 @@
 
                 <div class="card-footer">
                     <div class="d-flex">
-                   @if (!Auth::user()->role == "member")
+                   @if (Auth::user()->role == "project_leader")
                         <div class="p-2">
                             <a href="{{route('projects.edit', $project->id)}}" class="btn btn-warning">éditer</a>
                         </div>

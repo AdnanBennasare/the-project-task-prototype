@@ -8,7 +8,6 @@ use App\Exports\MemberExport;
 use App\Imports\MemberImport;
 use Illuminate\Validation\Rules;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\RedirectResponse;
@@ -27,55 +26,41 @@ class UserController extends Controller
     }
 
 
-    public function export() 
+// ========= index ============
+    public function index(Request $request)
     {
-    $authorization = Gate::inspect('viewMembers', User::class);
-    if ($authorization->allowed()) {
+        $this->authorize("viewAny", User::class);
+        // dd(auth()->user()->role);
 
-    
-       return Excel::download(new MemberExport, 'Member.xlsx');
-    } else {
-        abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
-    }
-    }
-
-    public function import(Request $request)
-    {
-     
-        $authorization = Gate::inspect('viewMembers', User::class);
-        if ($authorization->allowed()) {
-        $request->validate([
-            'members' => 'required|mimes:xlsx,xls',
-        ]);
-    
-        $import = new MemberImport;
-        try {
-            $importedRows = Excel::import($import, $request->file('members'));
         
-            if($importedRows) {
-          
-                $successMessage = 'Fichier importé avec succès.';
-            } else {
-                $successMessage = 'Pas de nouvelles données à importer.';
-            }
-    
-            return redirect('/members')->with('success', $successMessage);
-        } catch (\Exception $e) {
-            return redirect('/members')->with('error', 'une erreur a été acourd vérifier la syntaxe');
-           
-            // return redirect('/members')->with('error', $e->getMessage());
-        }
-    } else {
-        abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
+            $query = $request->input('query');
+            $members = $this->userRepository->paginate($query);
+        
+            if ($request->ajax()) {
+                return view('members.membersTablePartial')->with('members', $members);
+            } 
+            return view('members.index')->with('members', $members);
+      
     }
-    }
+
+
+
+// ========= create ============
+
+public function create()
+{
+    $this->authorize("create", User::class);
+    return view('members.create');
+  
+}
+
+// ========= store ============
 
 
     public function store(Request $request): RedirectResponse
     {
-        $authorization = Gate::inspect('viewMembers', User::class);
-   
-        if ($authorization->allowed()) {
+    $this->authorize("create", User::class);
+     
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
@@ -91,66 +76,28 @@ class UserController extends Controller
     
         // Return a redirect response with a success message and the name of the user added
         return redirect()->route('members.index')->with('success', 'Utilisateur ajouté avec succès');
-    } else {
-        // User is not authorized, handle the unauthorized access
-         abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
-     }
+ 
     }
     
     
 
 
-
-    
-    public function index(Request $request)
-    {
-        $authorization = Gate::inspect('viewMembers', User::class);
-   
-        if ($authorization->allowed()) {
-            $query = $request->input('query');
-            $members = $this->userRepository->paginate($query);
-        
-            if ($request->ajax()) {
-                return view('members.membersTablePartial')->with('members', $members);
-            } 
-            return view('members.index')->with('members', $members);
-        } else {
-           // User is not authorized, handle the unauthorized access
-            abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
-        }
-    }
+// ========= destroy ============
 
     public function destroy($id)
 {
-    $authorization = Gate::inspect('viewMembers', User::class);
-   
-    if ($authorization->allowed()) {
+    $this->authorize("destroy", User::class);
+  
     User::find($id)->delete();
     return redirect()->route('members.index')->with('success', 'ce membre deleted successfully');
-} else {
-    abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
-   }
-}
+} 
 
 
-public function create()
-{
-    $authorization = Gate::inspect('viewMembers', User::class);
-   
-    if ($authorization->allowed()) {
-    return view('members.create');
-   } else {
-    abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
-   }
-}
-
-
-
+// ========= show ============
 public function show($id){
 
-    $authorization = Gate::inspect('viewMembers', User::class);
-   
-if ($authorization->allowed()) {
+    $this->authorize("view", User::class);
+
     $member = User::find($id); 
     if($member) {
 
@@ -158,10 +105,50 @@ if ($authorization->allowed()) {
     } else {
         abort(404);
     }
-   } else {
-    abort(403, $authorization->message() ?: "Vous n'avez pas le droit de consulter cette page.");
-   }
+  
 
 }
+// ========= export ============
+
+public function export() 
+{
+
+    $this->authorize("export", User::class);
+   return Excel::download(new MemberExport, 'Member.xlsx');
+
+}
+
+
+// ========= import ============
+
+public function import(Request $request)
+{
+    $this->authorize("import", User::class);
+ 
+
+    $request->validate([
+        'members' => 'required|mimes:xlsx,xls',
+    ]);
+
+    $import = new MemberImport;
+    try {
+        $importedRows = Excel::import($import, $request->file('members'));
+    
+        if($importedRows) {
+      
+            $successMessage = 'Fichier importé avec succès.';
+        } else {
+            $successMessage = 'Pas de nouvelles données à importer.';
+        }
+
+        return redirect('/members')->with('success', $successMessage);
+    } catch (\Exception $e) {
+        return redirect('/members')->with('error', 'une erreur a été acourd vérifier la syntaxe');
+       
+        // return redirect('/members')->with('error', $e->getMessage());
+    }
+
+}
+
 
 }

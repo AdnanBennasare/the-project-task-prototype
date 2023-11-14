@@ -6,7 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +46,9 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('tasks', TaskController::class);
     Route::resource('projects', ProjectController::class);
-    Route::resource('members', UserController::class);
+    Route::resource('members', UserController::class)->except(['edit', 'update']);
+
+
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('projects.profileEdit');
